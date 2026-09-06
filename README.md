@@ -1,3 +1,13 @@
+---
+title: Recruiter Agent
+emoji: 🤖
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Recruiter agent
 
 Local or hostable agent that answers recruiter questions about Vasu Bansal. Paste a JD, ask a question, get a human-language fit answer grounded in `profile/*.md` (no invented metrics).
