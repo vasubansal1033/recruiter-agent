@@ -1,13 +1,3 @@
----
-title: Recruiter Agent
-emoji: 🤖
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_port: 7860
-pinned: false
----
-
 # Recruiter agent
 
 Local or hostable agent that answers recruiter questions about Vasu Bansal. Paste a JD, ask a question, get a human-language fit answer grounded in `profile/*.md` (no invented metrics).
@@ -81,7 +71,7 @@ uv run python -m recruiter_agent.ui
 | `OPENAI_AGENTS_DISABLE_TRACING` | `1` | Keep off unless you want Agents SDK traces (uses `OPENAI_API_KEY`) |
 | `OLLAMA_API_BASE` | `http://localhost:11434` | Local Ollama only |
 | `ALLOWED_ORIGINS` | GitHub Pages + local Astro | Comma-separated CORS allowlist |
-| `PORT` | `8000` | Bind port (Spaces / Cloud Run / Render inject this) |
+| `PORT` | `8000` | Bind port (Render injects this in production) |
 | `PROFILE_DIR` | `<repo>/profile` | Override markdown directory |
 
 Model examples:
@@ -138,39 +128,29 @@ HTTP contract:
 - Rate limit → 429 `{ "error": "I'm getting a lot of questions right now. Please try again in a minute." }`
 - Model failure → 502 `{ "error": "I couldn't complete that just now. Please try again." }`
 
-## 5. Hosting
+## 5. Host on Render
 
-Production model must be Gemini, Anthropic, or OpenAI. Do not point a hosted instance at Ollama.
+Production model must be Gemini, Anthropic, or OpenAI. Do not point Render at Ollama.
 
-Free-tier caveat: the first request after idle can be a **cold start** (tens of seconds). The blog widget may time out; retry once.
+1. Push this repo to GitHub.
+2. In [Render](https://dashboard.render.com), create a **Web Service** from the repo.
+3. Runtime: **Docker**. Branch: `master`. Health check: `/health`.
+4. Add env vars (do not upload `.env`):
 
-### Hugging Face Spaces (recommended)
-
-1. Create a Docker Space.
-2. Push this repo (or the image).
-3. In Space secrets, set `GEMINI_API_KEY` (or `ANTHROPIC_API_KEY` / `OPENAI_API_KEY`) and optionally `AGENT_MODEL`.
-4. Set `ALLOWED_ORIGINS` to include `https://vasubansal1033.github.io`.
-5. Spaces provides `PORT`. App listens on `0.0.0.0:$PORT`.
-6. Blog `chatProxyUrl` = `https://<space>.hf.space/chat`.
-
-### Cloud Run
-
-```bash
-docker build -t recruiter-agent .
-# push to Artifact Registry, then:
-gcloud run deploy recruiter-agent \
-  --image <image> \
-  --port 8000 \
-  --set-env-vars AGENT_MODEL=gemini/gemini-2.0-flash,ALLOWED_ORIGINS=https://vasubansal1033.github.io \
-  --set-secrets GEMINI_API_KEY=gemini-key:latest
+```
+AGENT_MODEL=openai/gpt-4o-mini
+OPENAI_API_KEY=<secret>
+ALLOWED_ORIGINS=https://vasubansal1033.github.io,http://localhost:4321,http://127.0.0.1:4321
+OPENAI_AGENTS_DISABLE_TRACING=1
 ```
 
-### Render
+Use `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` instead if `AGENT_MODEL` is a Gemini or Anthropic model.
 
-1. New Web Service from this repo.
-2. Docker runtime. `PORT` is injected.
-3. Add `GEMINI_API_KEY` (secret) and `ALLOWED_ORIGINS`.
-4. Blog `chatProxyUrl` = `https://<service>.onrender.com/chat`.
+5. Create the service. Render injects `PORT`. App listens on `0.0.0.0:$PORT`.
+6. When Live, `GET https://<service>.onrender.com/health` should return `{"status":"ok"}`.
+7. Blog `chatProxyUrl` = `https://<service>.onrender.com/chat`.
+
+Free-tier caveat: the first request after idle can be a **cold start** (tens of seconds). The blog widget may time out; retry once.
 
 ## 6. Docker locally
 
