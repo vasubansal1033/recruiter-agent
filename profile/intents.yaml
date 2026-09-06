@@ -1,0 +1,253 @@
+# Recruiter FAQ themes → profile files + lookup aliases.
+# Add a new alias here when a question theme should hit existing files.
+
+current_role:
+  files:
+    - profile.md
+  aliases:
+    - current role
+    - current title
+    - title
+    - mts
+    - mts-3
+    - currently
+    - right now
+
+work_history:
+  files:
+    - experience.md
+  aliases:
+    - companies
+    - company
+    - employers
+    - employer
+    - career
+    - history
+    - worked
+    - experience
+    - previous
+    - work history
+
+industries:
+  files:
+    - experience.md
+    - projects.md
+  aliases:
+    - industry
+    - industries
+    - domain
+    - sector
+
+years:
+  files:
+    - profile.md
+    - experience.md
+  aliases:
+    - years
+    - year
+    - yoe
+    - how long
+
+education:
+  files:
+    - education.md
+  aliases:
+    - education
+    - degree
+    - college
+    - university
+    - school
+    - iit
+    - kanpur
+    - studied
+    - alumni
+
+stack:
+  files:
+    - skills.md
+  aliases:
+    - skills
+    - stack
+    - tech
+    - technologies
+
+languages:
+  files:
+    - skills.md
+  aliases:
+    - languages
+    - programming languages
+    - frameworks
+
+leadership:
+  files:
+    - preferences.md
+    - projects.md
+  aliases:
+    - leadership
+    - lead teams
+    - people manager
+    - manage a team
+    - manager
+
+soft_skills:
+  files:
+    - preferences.md
+  aliases:
+    - soft skills
+    - communication
+    - teamwork
+    - culture fit
+
+learning:
+  files:
+    - preferences.md
+    - profile.md
+  aliases:
+    - learning
+    - learn
+    - new tech
+    - still learning
+    - ai-adjacent
+
+hard_project:
+  files:
+    - projects.md
+  aliases:
+    - hardest
+    - challenging
+    - difficult project
+    - proud
+    - project
+
+impact:
+  files:
+    - projects.md
+    - preferences.md
+  aliases:
+    - impact
+    - metrics
+    - sla
+    - results
+    - dollar
+
+code:
+  files:
+    - contact.md
+  aliases:
+    - github
+    - code
+    - portfolio
+    - repositories
+    - repo
+
+named_project:
+  files:
+    - projects.md
+  aliases:
+    - kyc
+    - iam
+    - control-plane
+    - control plane
+    - orchestration
+
+employment_type:
+  files:
+    - preferences.md
+  aliases:
+    - full-time
+    - full time
+    - contract
+    - freelance
+    - ft
+
+availability:
+  files:
+    - preferences.md
+    - contact.md
+  aliases:
+    - available
+    - availability
+    - notice
+    - notice period
+    - start date
+
+location:
+  files:
+    - preferences.md
+  aliases:
+    - location
+    - based
+    - bangalore
+    - bengaluru
+    - india
+    - where
+
+remote:
+  files:
+    - preferences.md
+  aliases:
+    - remote
+    - hybrid
+    - wfo
+
+hours:
+  files:
+    - preferences.md
+  aliases:
+    - saturday
+    - weekend
+    - 5-day
+    - five-day
+    - work week
+    - hours
+
+relocation:
+  files:
+    - preferences.md
+  aliases:
+    - relocate
+    - relocation
+    - geo
+    - timezone
+
+culture:
+  files:
+    - preferences.md
+  aliases:
+    - culture
+    - values
+    - work style
+
+contact:
+  files:
+    - contact.md
+  aliases:
+    - meeting
+    - interview
+    - schedule
+    - call
+    - book
+    - calendar
+    - contact
+    - reach
+    - intro
+
+resume:
+  files:
+    - contact.md
+  aliases:
+    - resume
+    - cv
+    - pdf
+
+salary:
+  files:
+    - preferences.md
+    - contact.md
+  aliases:
+    - salary
+    - compensation
+    - pay
+    - ctc
+    - expect
